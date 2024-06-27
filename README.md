@@ -9,6 +9,12 @@
 - JBDC
 - Itext
 
+#Modelagem
+- id pk
+- nome not null
+- fone not null
+- e-mail
+
 #script do bd
 - create database dbagenda;
 - show databases;
@@ -21,3 +27,7 @@
 ); 
 - show tables;
 - describe contatos;
+
+#sites
+- https://www.iconfinder.com/
+- https://fonts.google.com/?query=open
