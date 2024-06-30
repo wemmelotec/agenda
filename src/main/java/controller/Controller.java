@@ -47,9 +47,14 @@ public class Controller extends HttpServlet {
 		//System.out.println(request.getParameter("nome"));
 		//System.out.println(request.getParameter("fone"));
 		//System.out.println(request.getParameter("email"));
+		//setar os parâmetros recebidos na javabeans
 		contato.setNome(request.getParameter("nome"));
 		contato.setFone(request.getParameter("fone"));
 		contato.setEmail(request.getParameter("mail"));
+		//invocar o método inserirContato na DAO passando o objeto contato e salvando no banco
+		dao.inserirContato(contato);
+		//após salvar redirecionar para o agenda.jsp
+		response.sendRedirect("main");
 	}
 
 }
