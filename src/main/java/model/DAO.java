@@ -3,8 +3,8 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-
-import com.mysql.cj.xdevapi.PreparableStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DAO {
 
@@ -56,6 +56,35 @@ public class DAO {
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
+		}
+	}
+
+	// método com retorno de um vetor dinâmico
+	public ArrayList<JavaBeans> listarContatos() {
+		// criando um objeto do tipo arraylist para armazenar os objetos vindos do banco
+		ArrayList<JavaBeans> contatos = new ArrayList<>();
+
+		String read = "select * from contatos order by nome";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(read);
+
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				// variáveis de apoio que recebem os dados do banco
+				String id = rs.getString(1);
+				String nome = rs.getString(2);
+				String fone = rs.getNString(3);
+				String email = rs.getNString(4);
+				// populando o arraylista, a lista dinâmica que foi referenciada com JavaBeans
+				contatos.add(new JavaBeans(id, nome, fone, email));
+			}
+			con.close();
+			return contatos;
+
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
 		}
 	}
 }
