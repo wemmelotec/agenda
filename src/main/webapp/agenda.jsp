@@ -30,6 +30,7 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contat
 				<th>Nome</th>
 				<th>Telefone</th>
 				<th>Email</th>
+				<th>Opções</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -41,6 +42,8 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contat
 				<td><%=lista.get(i).getNome()%></td>
 				<td><%=lista.get(i).getFone()%></td>
 				<td><%=lista.get(i).getEmail()%></td>
+				<td><a href="select?id=<%=lista.get(i).getId()%>"
+					class="Botao1">Editar</a></td>
 			</tr>
 			<%
 			}

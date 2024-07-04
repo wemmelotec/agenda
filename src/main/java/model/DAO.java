@@ -64,7 +64,7 @@ public class DAO {
 		// criando um objeto do tipo arraylist para armazenar os objetos vindos do banco
 		ArrayList<JavaBeans> contatos = new ArrayList<>();
 
-		String read = "select * from contatos order by nome";
+		String read = "select * from contatos";//order by nome
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
