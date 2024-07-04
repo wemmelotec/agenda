@@ -93,6 +93,13 @@ public class Controller extends HttpServlet {
 		//System.out.println(id);
 		//setar o id na variavel javabeans
 		contato.setId(id);
+		//executar o método selecionarContato
+		dao.selecionarContato(contato);
+		//teste de recebimento do contato
+		//System.out.println(contato.getId());   
+		//System.out.println(contato.getNome()); 
+		//System.out.println(contato.getFone()); 
+		//System.out.println(contato.getEmail());
 	}
 
 }
