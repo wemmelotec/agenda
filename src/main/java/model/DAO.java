@@ -91,7 +91,7 @@ public class DAO {
 	//crud update
 	//selecionar o contato
 	public void selecionarContato(JavaBeans contato) {
-		//JavaBeans contato = new JavaBeans();
+		
 		String selecionar = "select * from contatos where id=?";
 		
 		try {
