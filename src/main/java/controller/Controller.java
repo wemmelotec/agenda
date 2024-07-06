@@ -43,7 +43,6 @@ public class Controller extends HttpServlet {
 		// dao.testeConexao();
 	}
 
-
 	// listar contatos
 	protected void contatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -84,22 +83,31 @@ public class Controller extends HttpServlet {
 		// após salvar redirecionar para o agenda.jsp
 		response.sendRedirect("main");
 	}
-	
-	//editar contato
-	protected void listarContato(HttpServletRequest request, HttpServletResponse response) {
-		//recebimento do id do contato que será editado
+
+	// editar contato
+	protected void listarContato(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// recebimento do id do contato que será editado
 		String id = request.getParameter("id");
-		//teste para saber se estou recebendo o id
-		//System.out.println(id);
-		//setar o id na variavel javabeans
+		// teste para saber se estou recebendo o id
+		// System.out.println(id);
+		// setar o id na variavel javabeans
 		contato.setId(id);
-		//executar o método selecionarContato
+		// executar o método selecionarContato
 		dao.selecionarContato(contato);
-		//teste de recebimento do contato
-		//System.out.println(contato.getId());   
-		//System.out.println(contato.getNome()); 
-		//System.out.println(contato.getFone()); 
-		//System.out.println(contato.getEmail());
+		// teste de recebimento do contato
+		// System.out.println(contato.getId());
+		// System.out.println(contato.getNome());
+		// System.out.println(contato.getFone());
+		// System.out.println(contato.getEmail());
+		// setar os valores que vinheram do banco no objeto javabeans
+		request.setAttribute("id", contato.getId());
+		request.setAttribute("nome", contato.getNome());
+		request.setAttribute("fone", contato.getFone());
+		request.setAttribute("email", contato.getEmail());
+		// encaminhar para o editar.jsp
+		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
+		rd.forward(request, response);
 	}
 
 }
