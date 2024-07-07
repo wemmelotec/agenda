@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
@@ -35,6 +33,8 @@ public class Controller extends HttpServlet {
 			novoContato(request, response);
 		} else if (action.equals("/select")) {
 			listarContato(request, response);
+		} else if (action.equals("/update")) {
+			editarContato(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -76,7 +76,7 @@ public class Controller extends HttpServlet {
 		// setar os parâmetros recebidos na javabeans
 		contato.setNome(request.getParameter("nome"));
 		contato.setFone(request.getParameter("fone"));
-		contato.setEmail(request.getParameter("mail"));
+		contato.setEmail(request.getParameter("email"));
 		// invocar o método inserirContato na DAO passando o objeto contato e salvando
 		// no banco
 		dao.inserirContato(contato);
@@ -108,6 +108,27 @@ public class Controller extends HttpServlet {
 		// encaminhar para o editar.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
 		rd.forward(request, response);
+	}
+
+	protected void editarContato(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// teste para saber se estou recebendo os dados que foram alterados e enviados
+		// pela jps
+		// System.out.println(request.getParameter("id"));
+		// System.out.println(request.getParameter("nome"));
+		// System.out.println(request.getParameter("fone"));
+		// System.out.println(request.getParameter("email"));
+		// setar as variaveis jbeans
+		contato.setNome(request.getParameter("id"));
+		contato.setNome(request.getParameter("nome"));
+		contato.setNome(request.getParameter("fone"));
+		contato.setNome(request.getParameter("email"));
+		// executar o alterar contato
+		dao.alterarContato(contato);
+		// redirecionar para o agenda.jps atualizando as alterações
+		response.sendRedirect("main");
+
 	}
 
 }

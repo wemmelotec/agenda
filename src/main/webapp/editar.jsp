@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>Editar contato</h1>
-	<form name="frmContato" action="">
+	<form name="frmContato" action="update">
 		<table>
 			<tr>
 				<td><input type="text" name="id" id="Caixa3"

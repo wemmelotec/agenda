@@ -64,7 +64,7 @@ public class DAO {
 		// criando um objeto do tipo arraylist para armazenar os objetos vindos do banco
 		ArrayList<JavaBeans> contatos = new ArrayList<>();
 
-		String read = "select * from contatos";//order by nome
+		String read = "select * from contatos order by nome";// 
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
@@ -87,13 +87,13 @@ public class DAO {
 			return null;
 		}
 	}
-	
-	//crud update
-	//selecionar o contato
+
+	// crud update
+	// selecionar o contato
 	public void selecionarContato(JavaBeans contato) {
-		
+
 		String selecionar = "select * from contatos where id=?";
-		
+
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(selecionar);
@@ -107,6 +107,24 @@ public class DAO {
 			}
 			con.close();
 		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	// alterar o contaro
+	public void alterarContato(JavaBeans contato) {
+		String atualizar = "update contatos set nome=?, fone=?, email=? where id=?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(atualizar);
+			pst.setString(1, contato.getNome());
+			pst.setString(2, contato.getFone());
+			pst.setString(3, contato.getEmail());
+			pst.setString(4, contato.getId());
+			pst.executeUpdate();
+			con.close();
+		}
+		catch (Exception e) {
 			System.out.println(e);
 		}
 	}
