@@ -120,10 +120,10 @@ public class Controller extends HttpServlet {
 		// System.out.println(request.getParameter("fone"));
 		// System.out.println(request.getParameter("email"));
 		// setar as variaveis jbeans
-		contato.setNome(request.getParameter("id"));
+		contato.setId(request.getParameter("id"));
 		contato.setNome(request.getParameter("nome"));
-		contato.setNome(request.getParameter("fone"));
-		contato.setNome(request.getParameter("email"));
+		contato.setFone(request.getParameter("fone"));
+		contato.setEmail(request.getParameter("email"));
 		// executar o alterar contato
 		dao.alterarContato(contato);
 		// redirecionar para o agenda.jps atualizando as alterações
