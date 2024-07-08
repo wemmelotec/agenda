@@ -45,5 +45,4 @@ public class JavaBeans {
 		this.email = email;
 	}
 	
-	
 }
