@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
@@ -35,7 +35,10 @@ public class Controller extends HttpServlet {
 			listarContato(request, response);
 		} else if (action.equals("/update")) {
 			editarContato(request, response);
-		} else {
+		}else if (action.equals("/delete")) {
+			removerContato(request, response);
+		} 
+		else {
 			response.sendRedirect("index.html");
 		}
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -129,6 +132,17 @@ public class Controller extends HttpServlet {
 		// redirecionar para o agenda.jps atualizando as alterações
 		response.sendRedirect("main");
 
+	}
+	
+	protected void removerContato(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String id = request.getParameter("id");
+		// teste para saber se estou recebendo o parâmetro id 
+		//System.out.println(id);
+		// setar o id no javabeans
+		contato.setId(id);
+		dao.deletarContato(contato);
+		response.sendRedirect("main");
 	}
 
 }

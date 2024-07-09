@@ -128,4 +128,17 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
+	
+	public void deletarContato(JavaBeans contato) {
+		String deletar = "DELETE FROM contatos WHERE id=?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(deletar);
+			pst.setString(1, contato.getId());
+			pst.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }
