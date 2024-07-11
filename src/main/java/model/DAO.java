@@ -6,15 +6,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DAO.
+ */
 public class DAO {
 
-	/** Módulo de conexão **/
+	/**  Módulo de conexão *. */
 	// Parâmetros de conexão
 	private String driver = "com.mysql.cj.jdbc.Driver";
+	
+	/** The url. */
 	private String url = "jdbc:mysql://127.0.0.1:3306/dbagenda?useTimezone=true&serverTimezone=UTC";
+	
+	/** The user. */
 	private String user = "root";
+	
+	/** The password. */
 	private String password = "root";
 
+	/**
+	 * Conectar.
+	 *
+	 * @return the connection
+	 */
 	// Método de conexão
 	private Connection conectar() {
 		Connection con = null;
@@ -38,6 +53,11 @@ public class DAO {
 	// }
 	// }
 
+	/**
+	 * Inserir contato.
+	 *
+	 * @param contato the contato
+	 */
 	// Método de inserção
 	public void inserirContato(JavaBeans contato) {
 		String create = "insert into contatos (nome, fone, email) values (?, ?, ?)";
@@ -59,6 +79,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Listar contatos.
+	 *
+	 * @return the array list
+	 */
 	// método com retorno de um vetor dinâmico
 	public ArrayList<JavaBeans> listarContatos() {
 		// criando um objeto do tipo arraylist para armazenar os objetos vindos do banco
@@ -89,6 +114,11 @@ public class DAO {
 	}
 
 	// crud update
+	/**
+	 * Selecionar contato.
+	 *
+	 * @param contato the contato
+	 */
 	// selecionar o contato
 	public void selecionarContato(JavaBeans contato) {
 
@@ -111,6 +141,11 @@ public class DAO {
 		}
 	}
 
+	/**
+	 * Alterar contato.
+	 *
+	 * @param contato the contato
+	 */
 	// alterar o contaro
 	public void alterarContato(JavaBeans contato) {
 		String atualizar = "update contatos set nome=?, fone=?, email=? where id=?";
@@ -129,6 +164,11 @@ public class DAO {
 		}
 	}
 	
+	/**
+	 * Deletar contato.
+	 *
+	 * @param contato the contato
+	 */
 	public void deletarContato(JavaBeans contato) {
 		String deletar = "DELETE FROM contatos WHERE id=?";
 		try {
