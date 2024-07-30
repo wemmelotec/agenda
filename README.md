@@ -29,6 +29,10 @@ Para rodar a aplicação, siga os passos abaixo:
 - JBDC
 - ItextPDF
 
+### Diagrama de Classes
+
+![Diagrama de Classe](https://github.com/user-attachments/assets/3dcb5d8c-d8e3-4b94-9a77-e9fdec53a560)
+
 ### Script no MySQL
 
 ![comando db](https://github.com/user-attachments/assets/ea4b8837-28f4-48c0-8077-c2a48809ab1f)
